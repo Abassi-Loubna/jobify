@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useState, InputHTMLAttributes } from "react";
 
-const CustomInput = ({ label, ...props }: any) => {
+type Props = {
+  label: string;
+} & InputHTMLAttributes<HTMLInputElement>;
+
+const CustomInput: React.FC<Props> = ({ label, ...props }) => {
   const [focus, setFocus] = useState(false);
 
   return (
     <div className="relative w-full">
-
       <input
         {...props}
         onFocus={() => setFocus(true)}
@@ -21,7 +24,6 @@ const CustomInput = ({ label, ...props }: any) => {
         "
       />
 
-      {/* Floating Label */}
       <label
         className={`
           absolute left-4 text-gray-400

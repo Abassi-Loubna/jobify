@@ -2,8 +2,7 @@ import { Link } from "react-router-dom";
 import { FiGithub, FiTwitter, FiLinkedin, FiInstagram, FiMail, FiSend } from "react-icons/fi";
 import React from "react";
 
-// --- تعريف أنواع البيانات (TypeScript Interfaces) ---
-
+// --- تعريف أنواع البيانات ---
 interface FooterLink {
   name: string;
   path: string;
@@ -19,12 +18,15 @@ interface SocialIconProps {
   href: string;
 }
 
-// --- المكونات الفرعية (Sub-components) ---
+// --- المكونات الفرعية ---
 
 const FooterColumn = ({ title, links }: FooterColumnProps) => (
-  <div className="flex flex-col gap-6">
+  /* 
+     - items-center md:items-start: توسيط النصوص في الموبايل ومحاذاتها لليسار في الحاسوب
+  */
+  <div className="flex flex-col items-center md:items-start gap-6">
     <h3 className="text-white font-bold text-lg">{title}</h3>
-    <ul className="flex flex-col gap-4">
+    <ul className="flex flex-col items-center md:items-start gap-4">
       {links.map((link, index) => (
         <li key={index}>
           <Link 
@@ -50,24 +52,36 @@ const SocialIcon = ({ icon, href }: SocialIconProps) => (
   </a>
 );
 
-// --- المكون الرئيسي (Main Component) ---
+// --- المكون الرئيسي ---
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full bg-[#020617] border-t border-white/5 pt-16 pb-8 font-sans">
-      <div className="max-w-[1400px] mx-auto px-10 md:px-20">
+    /* 
+       - pt-12 pb-6 md:pt-16 md:pb-8: تقليل الحشوة العلوية في الموبايل
+    */
+    <footer className="w-full bg-[#020617] border-t border-white/5 pt-12 pb-6 md:pt-16 md:pb-8 font-sans">
+      {/* 
+          - px-6 md:px-20: حواف جانبية أصغر في الموبايل لمنع ضيق المحتوى
+      */}
+      <div className="max-w-[1400px] mx-auto px-6 md:px-20">
         
         {/* Top Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        {/* 
+            - grid-cols-1: عمود واحد في الموبايل
+            - sm:grid-cols-2: عمودين في الشاشات المتوسطة
+            - lg:grid-cols-4: 4 أعمدة في الشاشات الكبيرة
+            - text-center md:text-left: توسيط المحتوى بالكامل في الموبايل
+        */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 text-center md:text-left">
           
           {/* Column 1: Brand */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col items-center md:items-start gap-6">
             <Link to="/" className="text-3xl font-black tracking-tighter text-white">
               JOB<span className="text-emerald-500">IFY</span>
             </Link>
-            <p className="text-gray-400 leading-relaxed text-sm">
+            <p className="text-gray-400 leading-relaxed text-sm max-w-sm">
               The world's largest marketplace for digital services. Empowering freelancers and businesses to thrive in the modern economy.
             </p>
             <div className="flex gap-4">
@@ -101,10 +115,10 @@ const Footer = () => {
           />
 
           {/* Column 4: Newsletter */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col items-center md:items-start gap-6">
             <h3 className="text-white font-bold text-lg">Newsletter</h3>
             <p className="text-gray-400 text-sm">Get the latest updates and job alerts directly to your inbox.</p>
-            <div className="relative group">
+            <div className="relative group w-full max-w-xs md:max-w-none">
               <input 
                 type="email" 
                 placeholder="Enter your email"
@@ -119,10 +133,14 @@ const Footer = () => {
         </div>
 
         {/* Bottom Section */}
+        {/* 
+            - border-t: سطر فاصل
+            - flex-col md:flex-row: ترتيب عمودي في الموبايل وأفقي في الحاسوب
+        */}
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-gray-500">
           <p>© {currentYear} JOBIFY Inc. All Rights Reserved.</p>
           
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-6 md:gap-8">
             <div className="flex items-center gap-2 hover:text-emerald-500 cursor-pointer transition-colors group">
               <span className="w-2 h-2 rounded-full bg-emerald-500 group-hover:animate-ping"></span>
               English (US)
