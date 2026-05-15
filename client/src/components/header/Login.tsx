@@ -18,21 +18,21 @@ const Login: React.FC<LoginProps> = ({ vertical = false, onClick }) => {
       <Link
         to="/login"
         onClick={onClick}
-        className={`group relative flex items-center gap-2 py-1 text-white transition-all duration-300 hover:text-emerald-400 ${
+        className={`group relative flex items-center gap-2 py-1 text-text-primary transition-all duration-300 hover:text-brand ${
           vertical ? "w-full justify-center" : ""
         }`}
       >
         <span>Sign In</span>
-        <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-emerald-500 transition-all duration-300 group-hover:w-full"></span>
+        <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-brand transition-all duration-300 group-hover:w-full"></span>
       </Link>
 
       <Link
         to="/register"
         onClick={onClick}
         className={`group relative flex items-center gap-2 overflow-hidden rounded-full 
-        bg-emerald-500 px-5 md:px-7 py-2 md:py-2.5 text-[#020617] transition-all duration-500 
-        hover:bg-emerald-400 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] 
-        active:scale-95 border border-emerald-400/20 ${
+        bg-brand px-5 md:px-7 py-2 md:py-2.5 text-bg-primary transition-all duration-500 
+        hover:bg-brand-hover hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] 
+        active:scale-95 border border-brand/20 ${
           vertical ? "w-full justify-center" : ""
         }`}
       >
@@ -42,7 +42,7 @@ const Login: React.FC<LoginProps> = ({ vertical = false, onClick }) => {
           Join Now
         </span>
 
-        <div className="relative z-10 rounded-full bg-[#020617]/10 p-1 transition-colors group-hover:bg-[#020617]/20">
+        <div className="relative z-10 rounded-full bg-bg-primary/10 p-1 transition-colors group-hover:bg-bg-primary/20">
           <FiArrowUpRight className="text-base md:text-lg transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </div>
 

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FiGithub, FiTwitter, FiLinkedin, FiInstagram, FiMail, FiSend } from "react-icons/fi";
+import { FiGithub, FiTwitter, FiLinkedin, FiInstagram, FiSend } from "react-icons/fi";
 import React from "react";
 
 // --- تعريف أنواع البيانات ---
@@ -21,17 +21,16 @@ interface SocialIconProps {
 // --- المكونات الفرعية ---
 
 const FooterColumn = ({ title, links }: FooterColumnProps) => (
-  /* 
-     - items-center md:items-start: توسيط النصوص في الموبايل ومحاذاتها لليسار في الحاسوب
-  */
   <div className="flex flex-col items-center md:items-start gap-6">
-    <h3 className="text-white font-bold text-lg">{title}</h3>
+    {/* استخدام text-primary للعنوان */}
+    <h3 className="text-text-primary font-bold text-lg">{title}</h3>
     <ul className="flex flex-col items-center md:items-start gap-4">
       {links.map((link, index) => (
         <li key={index}>
           <Link 
             to={link.path} 
-            className="text-gray-400 hover:text-emerald-400 text-sm transition-all duration-300 hover:translate-x-1 inline-block"
+            // استخدام text-muted مع تأثير hover بلون الـ brand المتغير
+            className="text-text-muted hover:text-brand text-sm transition-all duration-300 hover:translate-x-1 inline-block"
           >
             {link.name}
           </Link>
@@ -46,7 +45,8 @@ const SocialIcon = ({ icon, href }: SocialIconProps) => (
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-gray-400 hover:bg-emerald-500 hover:text-[#020617] transition-all duration-300 border border-white/10 hover:border-emerald-500 hover:-translate-y-1 shadow-lg"
+    // استخدام bg-secondary والحدود المتغيرة border-color
+    className="w-10 h-10 rounded-xl bg-bg-secondary flex items-center justify-center text-text-muted hover:bg-brand hover:text-white transition-all duration-300 border border-border-color hover:border-brand hover:-translate-y-1 shadow-lg"
   >
     {icon}
   </a>
@@ -58,30 +58,19 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    /* 
-       - pt-12 pb-6 md:pt-16 md:pb-8: تقليل الحشوة العلوية في الموبايل
-    */
-    <footer className="w-full bg-[#020617] border-t border-white/5 pt-12 pb-6 md:pt-16 md:pb-8 font-sans">
-      {/* 
-          - px-6 md:px-20: حواف جانبية أصغر في الموبايل لمنع ضيق المحتوى
-      */}
+    // استخدام bg-card كخلفية للفوتر لتمييزه عن جسم الصفحة الرئيسي
+    <footer className="w-full bg-bg-card border-t border-border-color pt-12 pb-6 md:pt-16 md:pb-8 font-sans transition-colors duration-300">
       <div className="max-w-[1400px] mx-auto px-6 md:px-20">
         
-        {/* Top Section */}
-        {/* 
-            - grid-cols-1: عمود واحد في الموبايل
-            - sm:grid-cols-2: عمودين في الشاشات المتوسطة
-            - lg:grid-cols-4: 4 أعمدة في الشاشات الكبيرة
-            - text-center md:text-left: توسيط المحتوى بالكامل في الموبايل
-        */}
+        {/* القسم العلوي */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 text-center md:text-left">
           
-          {/* Column 1: Brand */}
+          {/* العمود الأول: الهوية */}
           <div className="flex flex-col items-center md:items-start gap-6">
-            <Link to="/" className="text-3xl font-black tracking-tighter text-white">
-              JOB<span className="text-emerald-500">IFY</span>
+            <Link to="/" className="text-3xl font-black tracking-tighter text-text-primary">
+              JOB<span className="text-brand">IFY</span>
             </Link>
-            <p className="text-gray-400 leading-relaxed text-sm max-w-sm">
+            <p className="text-text-secondary leading-relaxed text-sm max-w-sm">
               The world's largest marketplace for digital services. Empowering freelancers and businesses to thrive in the modern economy.
             </p>
             <div className="flex gap-4">
@@ -92,7 +81,7 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Column 2: Navigation */}
+          {/* العمود الثاني: المنصة */}
           <FooterColumn 
             title="Platform" 
             links={[
@@ -103,7 +92,7 @@ const Footer = () => {
             ]} 
           />
 
-          {/* Column 3: Legal */}
+          {/* العمود الثالث: الدعم والقانونية */}
           <FooterColumn 
             title="Support" 
             links={[
@@ -114,17 +103,18 @@ const Footer = () => {
             ]} 
           />
 
-          {/* Column 4: Newsletter */}
+          {/* العمود الرابع: النشرة الإخبارية */}
           <div className="flex flex-col items-center md:items-start gap-6">
-            <h3 className="text-white font-bold text-lg">Newsletter</h3>
-            <p className="text-gray-400 text-sm">Get the latest updates and job alerts directly to your inbox.</p>
+            <h3 className="text-text-primary font-bold text-lg">Newsletter</h3>
+            <p className="text-text-muted text-sm">Get the latest updates and job alerts directly to your inbox.</p>
             <div className="relative group w-full max-w-xs md:max-w-none">
               <input 
                 type="email" 
                 placeholder="Enter your email"
-                className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-sm text-white focus:outline-none focus:border-emerald-500 transition-all placeholder:text-gray-600"
+                // استخدام bg-primary للـ input ليبرز داخل bg-card
+                className="w-full bg-bg-primary border border-border-color rounded-xl py-3 px-4 text-sm text-text-primary focus:outline-none focus:border-brand transition-all placeholder:text-text-muted"
               />
-              <button className="absolute right-2 top-1.5 bg-emerald-500 text-[#020617] p-2 rounded-lg hover:bg-emerald-400 transition-all active:scale-95">
+              <button className="absolute right-2 top-1.5 bg-brand text-white p-2 rounded-lg hover:bg-brand-hover transition-all active:scale-95 shadow-md">
                 <FiSend size={16} />
               </button>
             </div>
@@ -132,20 +122,16 @@ const Footer = () => {
 
         </div>
 
-        {/* Bottom Section */}
-        {/* 
-            - border-t: سطر فاصل
-            - flex-col md:flex-row: ترتيب عمودي في الموبايل وأفقي في الحاسوب
-        */}
-        <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-gray-500">
+        {/* القسم السفلي */}
+        <div className="border-t border-border-color pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-text-muted">
           <p>© {currentYear} JOBIFY Inc. All Rights Reserved.</p>
           
           <div className="flex items-center gap-6 md:gap-8">
-            <div className="flex items-center gap-2 hover:text-emerald-500 cursor-pointer transition-colors group">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 group-hover:animate-ping"></span>
+            <div className="flex items-center gap-2 hover:text-brand cursor-pointer transition-colors group">
+              <span className="w-2 h-2 rounded-full bg-brand group-hover:animate-ping"></span>
               English (US)
             </div>
-            <span className="hover:text-emerald-500 cursor-pointer transition-colors">USD $</span>
+            <span className="hover:text-brand cursor-pointer transition-colors font-medium">USD $</span>
           </div>
         </div>
       </div>

@@ -3,29 +3,32 @@ import { items } from "../../utils/consttants";
 
 const Info = () => {
   return (
-    <section className="my-10 bg-green-100 bg-opacity-70 roundedn-md p-4 sm:p-6">
+    <section className="my-10 bg-brand/10 border border-brand/20 rounded-2xl p-4 sm:p-6">
       <h1 className="text-3xl">
-        <span className="font-extrabold">fiverr</span>
-        <span>.pro</span>
+        <span className="font-extrabold text-text-primary">JOB</span>
+        <span className="text-brand font-extrabold">IFY</span>
+        <span className="text-text-secondary font-normal">.pro</span>
       </h1>
 
-      <p className="text-4xl font-normal my-6 sm:my-8">
-        The <span className="text-green-400">premium</span> freelance solution for
+      <p className="text-4xl font-normal my-6 sm:my-8 text-text-primary">
+        The <span className="text-brand">premium</span> freelance solution for
         businesses
       </p>
+
       <div className="grid lg:grid-cols-2 gap-5">
         {items.map((item) => (
-          <div>
-            <h5 className="font-semibold text-xl flex items-center gap-3">
-              <BsFillPatchCheckFill />
+          <div key={item.title}>
+            <h5 className="font-semibold text-xl flex items-center gap-3 text-text-primary">
+              <BsFillPatchCheckFill className="text-brand shrink-0" />
               {item.title}
             </h5>
-            <p className="text-lg">{item.text}</p>
+            <p className="text-lg text-text-secondary">{item.text}</p>
           </div>
         ))}
       </div>
+
       <div className="flex justify-center my-6 sm:my-8">
-        <button className="bg-black text-white px-4 py-2 rounded-md hover:bg-zinc-600 hover:rounded-full">
+        <button className="bg-text-primary text-bg-primary px-6 py-2.5 rounded-md font-bold hover:bg-brand hover:text-bg-primary transition-all duration-300 hover:rounded-full active:scale-95">
           Try Now
         </button>
       </div>

@@ -9,28 +9,21 @@ const Register = () => {
   const [selectedWilaya, setSelectedWilaya] = useState("");
   const { register } = useContext(AuthContext);
 
-  // 📍 Auto detect wilaya
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(async (position) => {
       const { latitude, longitude } = position.coords;
-
       try {
         const res = await fetch(
           `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
         );
         const data = await res.json();
-
         const stateName = data.address.state || data.address.county;
-
         const found = algeriaStates.find(
           (s) =>
             stateName?.toLowerCase().includes(s.name.toLowerCase()) ||
             stateName?.includes(s.ar_name)
         );
-
-        if (found) {
-          setSelectedWilaya(found.name);
-        }
+        if (found) setSelectedWilaya(found.name);
       } catch (err) {
         console.log("Location error", err);
       }
@@ -39,33 +32,29 @@ const Register = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const formData = new FormData(e.currentTarget);
-
-  
     formData.set("country", selectedWilaya);
-
     const newUser: any = Object.fromEntries(formData.entries());
     newUser.isSeller = isSeller;
-
     register(newUser);
   };
 
   const inputStyle = `
-    w-full bg-gray-800/50 border border-gray-700 text-sm text-white rounded-xl p-3 outline-none 
-    focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all 
-    placeholder:text-gray-300
+    w-full bg-bg-secondary border border-border-color text-sm text-text-primary rounded-xl p-3 outline-none 
+    focus:border-brand focus:ring-1 focus:ring-brand transition-all 
+    placeholder:text-text-muted
   `;
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#090b11] p-4 text-white">
-      <div className="w-full max-w-5xl bg-[#111827]/80 backdrop-blur-xl border border-gray-800 rounded-3xl p-8 shadow-2xl">
-        
+    <div className="min-h-screen flex items-center justify-center bg-bg-primary p-4 text-text-primary">
+      <div className="w-full max-w-5xl bg-bg-card backdrop-blur-xl border border-border-color rounded-3xl p-8 shadow-2xl">
+
         {/* Header */}
-        <div className="flex justify-between items-center mb-8 border-b border-gray-800 pb-5">
-          <h1 className="text-2xl font-bold text-emerald-400">Create Account</h1>
-          <Link to="/login" className="text-sm text-gray-400 hover:text-emerald-400">
-            Already a member? <span className="text-emerald-400 font-semibold">Sign In</span>
+        <div className="flex justify-between items-center mb-8 border-b border-border-color pb-5">
+          <h1 className="text-2xl font-bold text-brand">Create Account</h1>
+          <Link to="/login" className="text-sm text-text-secondary hover:text-brand transition-colors">
+            Already a member?{" "}
+            <span className="text-brand font-semibold">Sign In</span>
           </Link>
         </div>
 
@@ -80,8 +69,6 @@ const Register = () => {
 
           {/* Row 2 */}
           <div className="grid md:grid-cols-2 gap-5">
-
-            {/* Wilaya Select */}
             <select
               name="country"
               required
@@ -90,7 +77,6 @@ const Register = () => {
               className={inputStyle}
             >
               <option value="">Select your wilaya</option>
-
               {algeriaStates.map((state) => (
                 <option key={state.id} value={state.name}>
                   {state.code} - {state.name}
@@ -98,15 +84,14 @@ const Register = () => {
               ))}
             </select>
 
-            {/* File */}
             <input type="file" name="photo" className={inputStyle} />
           </div>
 
           {/* Seller */}
-          <div className="p-6 rounded-2xl border border-gray-800">
+          <div className="p-6 rounded-2xl border border-border-color bg-bg-secondary/50">
             <div className="flex items-center gap-4 mb-4">
               <Toggle setIsSeller={setIsSeller} color="#000" />
-              <span className="text-sm font-bold">
+              <span className="text-sm font-bold text-text-primary">
                 Activate your seller account
               </span>
             </div>
@@ -118,14 +103,14 @@ const Register = () => {
                   name="desc"
                   placeholder="Your description"
                   required
-                  className={`${inputStyle} col-span-3 text-black`}
+                  className={`${inputStyle} col-span-3`}
                 />
               </div>
             )}
           </div>
 
           {/* Button */}
-          <button className="w-full py-4 bg-emerald-500 hover:bg-emerald-400 text-black font-bold rounded-xl">
+          <button className="w-full py-4 bg-brand hover:bg-brand-hover text-bg-primary font-bold rounded-xl transition-all duration-300 active:scale-95">
             Register
           </button>
         </form>

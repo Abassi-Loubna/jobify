@@ -1,14 +1,17 @@
 import axios from "axios";
 
 const api = axios.create({
-  // تأكد من إضافة هذا المتغير في إعدادات Vercel (Environment Variables)
-  baseURL: "https://serverts-1-n6b0.onrender.com/api",
-  withCredentials: true, // ضروري جداً لإرسال الكوكيز إذا كنت تستخدمها
+  baseURL:"http://localhost:3000/api",
+  withCredentials: true,
 });
 
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token");
+    // للـ Admin استخدم adminToken
+    const adminToken = localStorage.getItem("adminToken");
+    const userToken = localStorage.getItem("token");
+    const token = adminToken || userToken;
+
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }

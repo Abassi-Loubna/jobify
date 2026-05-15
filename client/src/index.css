@@ -2,12 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-    color : white;
-}
+@layer base {
+  :root {
+    --bg-primary: #f9fafb;
+    --bg-secondary: #f3f4f6;
+    --bg-card: #ffffff;
+    --text-primary: #111827;
+    --text-secondary: #6b7280;
+    --text-muted: #9ca3af;
+    --border-color: #e5e7eb;
+    --brand: #10b981;
+    --brand-hover: #34d399;
+  }
 
-input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 1000px rgba(31,41,55,0.5) inset !important;
-  -webkit-text-fill-color: #ffffff !important;
-  transition: background-color 5000s ease-in-out 0s;
+  .dark {
+    --bg-primary: #020617;
+    --bg-secondary: #0f172a;
+    --bg-card: #1e293b;
+    --text-primary: #f9fafb;
+    --text-secondary: #9ca3af;
+    --text-muted: #6b7280;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --brand: #10b981;
+    --brand-hover: #34d399;
+  }
 }

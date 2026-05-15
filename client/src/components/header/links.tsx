@@ -35,7 +35,7 @@ const Links: React.FC<LinksProps> = ({ vertical = false, onClick }) => {
             key={link.path}
             to={link.path}
             onClick={onClick}
-            className={`relative px-4 py-2 text-sm md:text-base font-semibold text-white hover:text-emerald-500 transition-colors duration-300 ${
+            className={`relative py-2 text-sm md:text-base font-semibold text-text-primary hover:text-brand transition-colors duration-300 ${
               vertical ? "w-full text-center py-4 text-lg" : ""
             }`}
           >
@@ -43,7 +43,7 @@ const Links: React.FC<LinksProps> = ({ vertical = false, onClick }) => {
             {isActive && (
               <motion.div
                 layoutId="nav-underline"
-                className={`absolute bg-emerald-500 rounded-full ${
+                className={`absolute bg-brand rounded-full ${
                   vertical
                     ? "left-0 top-1/4 bottom-1/4 w-[3px]"
                     : "left-0 right-0 bottom-0 h-[2px]"

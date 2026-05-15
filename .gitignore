@@ -1,7 +1,9 @@
+# Ignore node_modules folder
 node_modules/
+
+# Ignore environment variables files
 .env
-dist/
-build/
-client/node_modules/
-server/node_modules/
-server/.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local

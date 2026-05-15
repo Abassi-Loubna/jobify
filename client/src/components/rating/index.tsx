@@ -6,6 +6,7 @@ type Props = {
   designs?: string;
 };
 
+
 const Rating = ({ rating, reviews, designs }: Props) => {
   return (
     <div className={`flex gap-1 items-center ${designs}`}>
@@ -17,3 +18,10 @@ const Rating = ({ rating, reviews, designs }: Props) => {
 };
 
 export default Rating;
+
+
+
+
+
+
+

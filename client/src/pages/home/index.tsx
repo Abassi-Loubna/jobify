@@ -5,7 +5,7 @@ import Info from "./info";
 
 const Home = () => {
   return (
-    <div>
+    <div className="bg-bg-primary min-h-screen">
       <Hero />
       <Category />
       <Info />

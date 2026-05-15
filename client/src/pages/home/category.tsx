@@ -1,83 +1,108 @@
 import { Link } from "react-router-dom";
 import { categories } from "../../utils/consttants";
-import { HiOutlineArrowRight } from "react-icons/hi"; 
+import { HiOutlineArrowRight } from "react-icons/hi";
 
 const Category = () => {
-  // عرض أول 12 تصنيفاً فقط
   const topCategories = categories.slice(0, 12);
 
   return (
-    <div className="my-20 px-6 max-w-7xl mx-auto flex flex-col items-center">
-      
+    <div className="py-28 px-6 max-w-7xl mx-auto flex flex-col items-center">
+
       {/* رأس القسم */}
-      <div className="w-full mb-12 flex justify-between items-end border-b border-gray-800 pb-6">
-        <div>
-          <h2 className="text-3xl font-bold text-white tracking-tight">
-            Explore Top <span className="text-emerald-400">Categories</span>
-          </h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mt-3 rounded-full shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
-        </div>
-        
-        <Link 
-          to="/services" 
-          className="hidden md:flex items-center gap-2 text-emerald-400 font-bold hover:text-emerald-300 transition-all group"
+      <div className="flex flex-col items-center text-center mb-16 gap-4">
+        <span className="text-xs font-black uppercase tracking-[0.3em] text-brand px-4 py-1.5 rounded-full border border-brand/20 bg-brand/5">
+          What are you looking for?
+        </span>
+
+        <h2 className="text-4xl md:text-5xl font-black text-text-primary tracking-tight leading-tight">
+          Explore Top{" "}
+          <span className="relative inline-block">
+            <span className="text-brand">Categories</span>
+            <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 200 8" fill="none">
+              <path d="M0 6 Q50 0 100 4 Q150 8 200 2" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" className="text-brand"/>
+            </svg>
+          </span>
+        </h2>
+
+        <p className="text-text-secondary text-lg max-w-lg">
+          Hire top Algerian freelancers across every field — fast, reliable, and affordable.
+        </p>
+
+        <Link
+          to="/services"
+          className="flex items-center gap-2 text-brand text-sm font-bold hover:text-brand-hover transition-all group mt-1"
         >
-          See all categories 
+          Browse all categories
           <HiOutlineArrowRight className="group-hover:translate-x-1 transition-transform" />
         </Link>
       </div>
 
-      {/* Grid العرض */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 w-full">
-        {topCategories.map((i) => (
+      {/* Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 w-full">
+        {topCategories.map((i, idx) => (
           <Link
             to={`/search?category=${i.name}`}
             key={i.name}
-            className="group relative flex flex-col items-center justify-center 
-                       aspect-square p-6 rounded-[2rem] 
-                       bg-gray-900/40 border border-gray-800
-                       backdrop-blur-sm
-                       transition-all duration-500 ease-out
-                       hover:shadow-[0_0_30px_rgba(16,185,129,0.1)] 
-                       hover:-translate-y-3 hover:border-emerald-500/50"
+            style={{ animationDelay: `${idx * 50}ms` }}
+            className="group relative flex flex-col items-center justify-center
+                       aspect-square p-5 rounded-2xl
+                       bg-bg-card border border-border-color
+                       transition-all duration-300 ease-out
+                       hover:shadow-[0_8px_30px_rgba(16,185,129,0.12)]
+                       hover:-translate-y-2 hover:border-brand/40
+                       hover:bg-gradient-to-br hover:from-brand/5 hover:to-transparent"
           >
-            {/* تأثير التوهج عند الحوم */}
-            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2rem]" />
+            {/* رقم التصنيف */}
+         
 
-            <div className="relative z-10 flex flex-col items-center gap-5">
-              {/* أيقونة التصنيف */}
-              <div className="w-16 h-16 flex items-center justify-center rounded-2xl bg-gray-800/50 border border-gray-700 group-hover:bg-emerald-500/20 group-hover:border-emerald-500/30 transition-all duration-500">
-                <span className="text-4xl transition-transform duration-500 group-hover:scale-125">
+            <div className="flex flex-col items-center gap-4">
+              {/* الأيقونة */}
+              <div className="w-14 h-14 flex items-center justify-center rounded-xl
+                              bg-bg-secondary border border-border-color
+                              group-hover:bg-brand group-hover:border-brand
+                              group-hover:shadow-[0_4px_20px_rgba(16,185,129,0.3)]
+                              transition-all duration-300">
+                <span className="text-3xl transition-transform duration-300 group-hover:scale-110">
                   {i.icon}
                 </span>
               </div>
-              
-              {/* اسم التصنيف */}
-              <span className="font-bold text-gray-300 transition-colors duration-300 group-hover:text-white text-sm md:text-base text-center">
+
+              {/* الاسم */}
+              <span className="font-semibold text-text-secondary group-hover:text-text-primary text-xs md:text-sm text-center leading-snug transition-colors duration-300">
                 {i.name}
               </span>
             </div>
 
-            {/* الخط السفلي المضيء */}
-            <div className="absolute bottom-5 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.8)] transition-all duration-500 group-hover:w-1/3 rounded-full" />
+            {/* مؤشر السهم */}
+            <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-1 group-hover:translate-x-0">
+              <HiOutlineArrowRight className="text-brand text-xs" />
+            </div>
           </Link>
         ))}
       </div>
 
-      {/* زر الانتقال الرئيسي */}
-      <div className="mt-16">
+      {/* الزر الرئيسي */}
+      <div className="mt-14 flex flex-col items-center gap-3">
         <Link
           to="/Services"
-          className="flex items-center gap-3 px-12 py-4 rounded-xl bg-emerald-600 
-                      font-black shadow-[0_10px_20px_rgba(16,185,129,0.2)]
-                     hover:bg-emerald-500 hover:shadow-[0_15px_30px_rgba(16,185,129,0.3)] 
-                     hover:-translate-y-1 transition-all duration-300 active:scale-95 group uppercase text-sm tracking-widest"
+          className="flex items-center gap-3 px-10 py-3.5 rounded-xl
+                     bg-brand text-bg-primary font-black
+                     shadow-[0_4px_20px_rgba(16,185,129,0.25)]
+                     hover:bg-brand-hover hover:shadow-[0_8px_30px_rgba(16,185,129,0.35)]
+                     hover:-translate-y-0.5 transition-all duration-300
+                     active:scale-95 uppercase text-sm tracking-widest group"
         >
           View All Categories
-          <HiOutlineArrowRight className="group-hover:translate-x-2 transition-transform text-lg" />
+          <HiOutlineArrowRight className="group-hover:translate-x-1 transition-transform" />
         </Link>
+        <p className="text-text-muted text-xs">
+          +50 categories available on{" "}
+          <span className="font-black text-text-secondary">
+            JOB<span className="text-brand">IFY</span>
+          </span>
+        </p>
       </div>
-      
+
     </div>
   );
 };

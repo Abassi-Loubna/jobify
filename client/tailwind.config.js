@@ -1,13 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: "class",
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
+        // ألوانك الموجودة
         "dark-color-2": "#212121",
         "dark-color-1": "#030014",
         "main-color-1": "#0bb39f",
-        "secondary-color": "#049d8e", 
+        "secondary-color": "#049d8e",
         "dark-layer-1": "#282828",
         "dark-layer-2": "#1a1a1a",
         "dark-label-2": "rgba(239, 241, 246, 0.75)",
@@ -25,6 +27,17 @@ export default {
         olive: "#00b8a3",
         "dark-green-s": "#2cbb5d",
         "dark-blue-s": "#0a84ff",
+
+        // ✅ متغيرات الـ theme الجديدة
+        "bg-primary": "var(--bg-primary)",
+        "bg-secondary": "var(--bg-secondary)",
+        "bg-card": "var(--bg-card)",
+        "text-primary": "var(--text-primary)",
+        "text-secondary": "var(--text-secondary)",
+        "text-muted": "var(--text-muted)",
+        "border-color": "var(--border-color)",
+        "brand": "var(--brand)",
+        "brand-hover": "var(--brand-hover)",
       },
     },
   },
