@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL:"http://localhost:3000/api",
+  baseURL:"https://serverts-1-n6b0.onrender.com/api",
   withCredentials: true,
 });
 
